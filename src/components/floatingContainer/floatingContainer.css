@@ -1,0 +1,16 @@
+.loginContainer {
+    background-color: #f5f4f8;
+    min-height: 450px;
+    border-radius: 20px;
+}
+
+.titleSection {
+    background-color: #f5f4f8;
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #121212;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
