@@ -2,26 +2,27 @@ import React from "react";
 import { useFormik } from "formik";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import Button from "@mui/material/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { appAuth } from "../../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-export const LoginForm = () => {
+export const SignupForm = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
     onSubmit: async (values) => {
       try {
-        const user = await signInWithEmailAndPassword(
+        const user = await createUserWithEmailAndPassword(
           appAuth,
           values.email,
           values.password
         );
-        alert("Successfully Login");
+        console.log("User >>>>>>>>>>>>>>>", user);
         window.location.replace("/dashboard/home");
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     },
   });
@@ -47,10 +48,19 @@ export const LoginForm = () => {
           placeholder="Password"
           className="p-2 rounded-3xl shadow pl-4 mt-4 w-full "
         />
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          onChange={formik.handleChange}
+          value={formik.values.confirmPassword}
+          placeholder="Confirm Password"
+          className="p-2 rounded-3xl shadow pl-4 mt-4 w-full "
+        />
         <br />
         <div className="mt-20" />
         <Button variant="contained" endIcon={<DoubleArrowIcon />} type="submit">
-          Login
+          Sign up
         </Button>
       </form>
     </div>

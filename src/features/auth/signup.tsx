@@ -1,12 +1,12 @@
 import React from "react";
 import { FloatingContainer } from "../../components/floatingContainer/FloatingContainer";
-import { LoginForm } from "./components/loginForm";
+import { SignupForm } from "./components/signupForm";
 
 // Images
 const wordingImg = "/assets/Images/wording.png";
 const banner = require("./assets/banner.png");
 
-export const Login = () => {
+export const Signup = () => {
   return (
     <div>
       <img
@@ -37,10 +37,10 @@ export const Login = () => {
           <div className="w-1/12 w-full" />
           <div className="w-11/12 w-full  h-full ">
             <div className="sm:w-96 w-11/12  h-full flex items-center">
-              <FloatingContainer title="Login">
+              <FloatingContainer title="Sign up">
                 <div>
-                  Enter your email and password to login
-                  <LoginForm />
+                  Enter your email and password to register
+                  <SignupForm />
                 </div>
               </FloatingContainer>
             </div>
