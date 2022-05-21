@@ -2,8 +2,6 @@ import React from "react";
 import { FloatingContainer } from "../../components/floatingContainer/FloatingContainer";
 import { LoginForm } from "./components/loginForm";
 
-// Images
-const wordingImg = "/assets/Images/wording.png";
 const banner = require("./assets/banner.png");
 
 export const Login = () => {
@@ -20,11 +18,6 @@ export const Login = () => {
           objectFit: "cover",
         }}
       />
-      <img
-        src={wordingImg}
-        alt="wording"
-        className="sm:float-right ml-auto mr-auto py-5 sm:mt-auto sm:mb-auto sm:top-0 sm:bottom-0 sm:absolute sm:right-5"
-      />
       <div
         style={{
           width: "100vw",
@@ -33,8 +26,8 @@ export const Login = () => {
           zIndex: 0,
         }}
       >
-        <div className="flex flex-row sm:h-full">
-          <div className="w-1/12 w-full" />
+        <div className="flex flex-row h-full">
+          <div className="w-1/12 w-full"></div>
           <div className="w-11/12 w-full  h-full ">
             <div className="sm:w-96 w-11/12  h-full flex items-center">
               <FloatingContainer title="Login">
@@ -44,7 +37,7 @@ export const Login = () => {
                 </div>
               </FloatingContainer>
             </div>
-            <div className="w-8/12" />
+            <div className="w-8/12"></div>
           </div>
         </div>
       </div>

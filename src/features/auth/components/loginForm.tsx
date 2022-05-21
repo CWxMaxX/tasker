@@ -2,8 +2,6 @@ import React from "react";
 import { useFormik } from "formik";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import Button from "@mui/material/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { appAuth } from "../../../firebase";
 
 export const LoginForm = () => {
   const formik = useFormik({
@@ -11,18 +9,8 @@ export const LoginForm = () => {
       email: "",
       password: "",
     },
-    onSubmit: async (values) => {
-      try {
-        const user = await signInWithEmailAndPassword(
-          appAuth,
-          values.email,
-          values.password
-        );
-        alert("Successfully Login");
-        window.location.replace("/dashboard/home");
-      } catch (error) {
-        alert(error);
-      }
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
     },
   });
 
@@ -48,7 +36,7 @@ export const LoginForm = () => {
           className="p-2 rounded-3xl shadow pl-4 mt-4 w-full "
         />
         <br />
-        <div className="mt-20" />
+        <div className="mt-20"></div>
         <Button variant="contained" endIcon={<DoubleArrowIcon />} type="submit">
           Login
         </Button>
