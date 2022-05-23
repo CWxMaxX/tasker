@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { appAuth } from "../../firebase";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, User, signOut } from "firebase/auth";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import Button from "@mui/material/Button";
 
 // Images
 const addIcon = "/assets/Icons/Add.svg";
@@ -10,7 +12,7 @@ const documentIcon = "/assets/Icons/Create Document.svg";
 const locationIcon = "/assets/Icons/Address.svg";
 const alarmIcon = "/assets/Icons/Add Reminder.svg";
 const downloadIcon = "/assets/Icons/Download from the Cloud.svg";
-const userIcon = "/assets/Icons/User.svg";
+
 
 const Home: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -21,15 +23,24 @@ const Home: React.FC = () => {
     <div style={{ height: "100vh", width: "100vw", color: "#fcfcfc" }}>
       <header className="flex flex-row-reverse w-full h-12 fixed bg-gray-900 items-center pr-5">
         <span>{user ? user.email : "User Email"}</span>
-        <div className="">
-          <AccountCircleIcon
-            sx={{
-              color: `${user ? "#2378ef" : "#f1410a"}`,
-              mr: 1,
-              width: "35px",
-              height: "35px",
-            }}
-          />
+        <div className="flex-row flex pr-2">
+          {user?.photoURL ? (
+            <div style={{ borderRadius: "50%", overflow: "clip" }}>
+              <img src={user?.photoURL} alt="User" width={35} />
+            </div>
+          ) : (
+            <AccountCircleIcon
+              sx={{
+                color: `${user ? "#2378ef" : "#f1410a"}`,
+                mr: 1,
+                width: "35px",
+                height: "35px",
+              }}
+              onClick={() => {
+                console.log(user?.uid);
+              }}
+            />
+          )}
         </div>
       </header>
       <div
@@ -74,7 +85,25 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className=" w-8/12 h-full"></div>
+        <div className=" w-8/12 h-full items-center flex">
+          <Button
+            variant="contained"
+            endIcon={<DoubleArrowIcon />}
+            onClick={() => {
+              signOut(appAuth)
+                .then(() => {
+                  window.location.replace("/auth/login");
+                  // Sign-out successful.
+                })
+                .catch((error) => {
+                  // An error happened.
+                  console.log(error);
+                });
+            }}
+          >
+            Log out
+          </Button>
+        </div>
         <div className=" w-3/12 h-full"></div>
       </div>
       <footer className="flex flex-row w-full h-48 bg-gray-900"></footer>
