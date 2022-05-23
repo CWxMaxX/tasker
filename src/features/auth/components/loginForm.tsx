@@ -30,7 +30,7 @@ export const LoginForm = () => {
           // The AuthCredential type that was used.
           const credential = GoogleAuthProvider.credentialFromError(error);
           // ...
-          alert(
+          console.log(
             `Error ${errorCode} ${errorMessage}  of ${email}  >>>> ${credential} `
           );
         });
