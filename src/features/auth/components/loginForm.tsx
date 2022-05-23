@@ -14,7 +14,9 @@ export const LoginForm = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid Email").required("Required"),
-      password: Yup.string().min(10, "Password must have 10 characters"),
+      password: Yup.string()
+        .min(8, "Password must have 10 characters")
+        .required("Password Required"),
     }),
     onSubmit: async (values) => {
       try {
