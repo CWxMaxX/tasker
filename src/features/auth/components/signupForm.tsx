@@ -4,6 +4,7 @@ import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import Button from "@mui/material/Button";
 import { appAuth } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import * as Yup from "yup";
 
 export const SignupForm = () => {
   const formik = useFormik({

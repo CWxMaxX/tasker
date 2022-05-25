@@ -14,7 +14,7 @@ export const LoginForm = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid Email").required("Required"),
-      password: Yup.string().min(10, "Password must have 10 characters"),
+      password: Yup.string().min(8, "Password must have 10 characters"),
     }),
     onSubmit: async (values) => {
       try {
@@ -23,7 +23,7 @@ export const LoginForm = () => {
           values.email,
           values.password
         );
-        alert("Successfully Login");
+
         window.location.replace("/dashboard/home");
       } catch (error) {
         alert(error);
