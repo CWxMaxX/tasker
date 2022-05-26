@@ -6,41 +6,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { appAuth } from "../../../firebase";
 import * as Yup from "yup";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { googleLoginProviderFn } from "./googleLoginProvider";
 
 export const LoginForm = () => {
-  const provider = new GoogleAuthProvider();
-  const handleGoogleLogin = async () => {
-    try {
-      const user = await signInWithPopup(appAuth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // const credential = GoogleAuthProvider.credentialFromResult(result);
-          // const token = credential?.accessToken;
-          // // The signed-in user info.
-          // const user = result.user;
-          window.location.replace("/dashboard/home");
-          // ...
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-          console.log(
-            `Error ${errorCode} ${errorMessage}  of ${email}  >>>> ${credential} `
-          );
-        });
-      console.log(user);
-      // user ? window.location.replace("/dashboard/home") : alert("Try Again");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -98,7 +66,7 @@ export const LoginForm = () => {
           <div className="w-auto p-1 mr-3 hover:shadow hover:bg-white rounded">
             <img
               src="https://img.icons8.com/fluency/48/000000/google-logo.png"
-              onClick={handleGoogleLogin}
+              onClick={googleLoginProviderFn}
               width={30}
               alt="Google Icon"
             />

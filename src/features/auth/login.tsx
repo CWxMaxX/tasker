@@ -1,7 +1,8 @@
 import React from "react";
 import { FloatingContainer } from "../../components/floatingContainer/FloatingContainer";
 import { LoginForm } from "./components/loginForm";
-
+import Button from "@mui/material/Button";
+import { teal } from "@mui/material/colors";
 // Images
 const wordingImg = "/assets/Images/wording.png";
 const banner = require("./assets/banner.png");
@@ -25,6 +26,15 @@ export const Login = () => {
         alt="wording"
         className="sm:float-right ml-auto mr-auto py-5 sm:mt-auto sm:mb-auto sm:top-0 sm:bottom-0 sm:absolute sm:right-5"
       />
+      <span className="absolute right-10 top-5 z-10">
+        <Button
+          variant="contained"
+          onClick={() => window.open("/auth/signup", "_self")}
+          sx={{ bgcolor: teal[500] }}
+        >
+          Sign up
+        </Button>
+      </span>
       <div
         style={{
           width: "100vw",
