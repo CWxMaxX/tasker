@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { teal } from "@mui/material/colors";
 // Images
 const wordingImg = "/assets/Images/wording.png";
-const banner = require("./assets/banner.png");
+const banner = "/assets/Images/banner.png";
 
 export const Login = () => {
   return (

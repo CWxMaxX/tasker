@@ -13,6 +13,9 @@ export const loginValidation = Yup.object({
 });
 
 export const signupValidation = Yup.object({
+  name: Yup.string()
+    .max(50, "Name must below 50 characters")
+    .required("Name is required"),
   email: Yup.string().email().required("Email Required"),
   password: Yup.string()
     .min(8, "Enter minimum 8 characters")

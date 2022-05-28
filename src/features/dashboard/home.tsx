@@ -13,7 +13,6 @@ const locationIcon = "/assets/Icons/Address.svg";
 const alarmIcon = "/assets/Icons/Add Reminder.svg";
 const downloadIcon = "/assets/Icons/Download from the Cloud.svg";
 
-
 const Home: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   onAuthStateChanged(appAuth, (currentUser) => {
@@ -22,7 +21,7 @@ const Home: React.FC = () => {
   return (
     <div style={{ height: "100vh", width: "100vw", color: "#fcfcfc" }}>
       <header className="flex flex-row-reverse w-full h-12 fixed bg-gray-900 items-center pr-5">
-        <span>{user ? user.email : "User Email"}</span>
+        <span>{user?.displayName ? user.displayName : user?.email}</span>
         <div className="flex-row flex pr-2">
           {user?.photoURL ? (
             <div style={{ borderRadius: "50%", overflow: "clip" }}>
