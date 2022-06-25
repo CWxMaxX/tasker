@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { appAuth } from "../../firebase";
+import { appAuth, db } from "../../firebase";
 import { onAuthStateChanged, User, signOut } from "firebase/auth";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import Button from "@mui/material/Button";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 import CommonModal from "../../components/modals/commonModal";
 import AddNewTask from "../../components/modals/dashboardComponents/addNewTask";
@@ -19,8 +20,24 @@ const downloadIcon = "/assets/Icons/Download from the Cloud.svg";
 const Home: React.FC = () => {
 	const [user, setUser] = useState<User | null>(null);
 	onAuthStateChanged(appAuth, (currentUser) => {
+		localStorage.setItem("TASKER_USER", JSON.stringify(currentUser));
 		setUser(currentUser);
 	});
+
+	const handleAddTask = async () => {
+		try {
+			const docRef = await setDoc(doc(db, "users", user?.uid || "anonymous"), {
+				name: "Los Angeles",
+				state: "CA",
+				country: "USA",
+				proList: ["Test1", "Test2"],
+			});
+			console.log("Document written with ID: ", docRef);
+		} catch (e) {
+			console.error("Error adding document: ", e);
+		}
+	};
+
 	return (
 		<div style={{ height: "100vh", width: "100vw", color: "#fcfcfc" }}>
 			<header className='flex flex-row-reverse w-full h-12 fixed bg-gray-900 items-center pr-5'>
@@ -60,6 +77,7 @@ const Home: React.FC = () => {
 							component={<img src={addIcon} alt='Add' className='mb-8' width={40} />}
 							title='Add New Task ...'
 							content={<AddNewTask />}
+							handleSubmit={handleAddTask}
 						/>
 						<img src={calenderIcon} alt='Calender' className='mb-8' width={40} />
 						<img src={documentIcon} alt='Document Icon' className='mb-8' width={40} />
@@ -78,6 +96,7 @@ const Home: React.FC = () => {
 						onClick={() => {
 							signOut(appAuth)
 								.then(() => {
+									localStorage.setItem("TASKER_USER", "");
 									window.location.replace("/auth/login");
 									// Sign-out successful.
 								})

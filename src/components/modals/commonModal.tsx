@@ -10,6 +10,7 @@ interface Props {
 	component: ReactJSXElement;
 	title?: string;
 	content: ReactJSXElement;
+	handleSubmit?: () => void;
 }
 
 const style = {
@@ -42,7 +43,7 @@ export default function CommonModal(props: Props) {
 						<Button sx={{ mr: 3 }} color='error' variant='outlined' onClick={() => setOpen(false)}>
 							Close
 						</Button>
-						<Button variant='contained' sx={{ mr: 3 }}>
+						<Button variant='contained' sx={{ mr: 3 }} onClick={props.handleSubmit}>
 							Submit
 						</Button>
 					</div>
