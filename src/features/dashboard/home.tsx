@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 import CommonModal from "../../components/modals/commonModal";
-import AddNewTask from "../../components/modals/dashboardComponents/addNewTask";
+import AddTask from "../addTask/AddTask";
 
 // Images
 const addIcon = "/assets/Icons/Add.svg";
@@ -23,6 +23,7 @@ const Home: React.FC = () => {
 		localStorage.setItem("TASKER_USER", JSON.stringify(currentUser));
 		setUser(currentUser);
 	});
+	console.log("User ======>", user);
 
 	const handleAddTask = async () => {
 		try {
@@ -76,7 +77,7 @@ const Home: React.FC = () => {
 						<CommonModal
 							component={<img src={addIcon} alt='Add' className='mb-8' width={40} />}
 							title='Add New Task ...'
-							content={<AddNewTask />}
+							content={<AddTask />}
 							handleSubmit={handleAddTask}
 						/>
 						<img src={calenderIcon} alt='Calender' className='mb-8' width={40} />
