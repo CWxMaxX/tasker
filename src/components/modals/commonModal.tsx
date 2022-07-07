@@ -1,10 +1,8 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import "./modal.css";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 interface Props {
 	component: ReactJSXElement;
@@ -38,15 +36,15 @@ export default function CommonModal(props: Props) {
 			<Modal open={open} onClose={handleClose} sx={{ backdropFilter: "blur(5px)" }} hideBackdrop>
 				<div style={style} className='modal-area'>
 					{props.title && <div className='w-full modalTitle '>{props.title}</div>}
-					<div className='modalContentBox'>{props.content}</div>
-					<div className='w-full flex flex-row justify-end '>
-						<Button sx={{ mr: 3 }} color='error' variant='outlined' onClick={() => setOpen(false)}>
-							Close
-						</Button>
-						<Button variant='contained' sx={{ mr: 3 }} onClick={props.handleSubmit}>
-							Submit
-						</Button>
+					<div
+						className='float-right -mt-9 mr-2'
+						onClick={() => {
+							setOpen(false);
+						}}>
+						<CancelIcon sx={{ color: "#ffffff" }} />
 					</div>
+
+					<div className='modalContentBox'>{props.content}</div>
 				</div>
 			</Modal>
 		</div>

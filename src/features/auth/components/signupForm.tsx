@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { appAuth } from "../../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { googleLoginProviderFn } from "./googleLoginProvider";
-import { signupValidation } from "../../../Temp/validationSchema";
+import { signupValidation } from "../validationSchema";
 import { TextField } from "../../../components/input/TextField";
 
 export const SignupForm = () => {
