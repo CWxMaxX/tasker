@@ -78,7 +78,7 @@ const Home: React.FC = () => {
         )}
 
         <div className=" w-8/12 h-full items-center flex">
-          <ViewTaskCard />
+          {user && <ViewTaskCard user={user} />}
         </div>
         <div className=" w-3/12 h-full flex flex-col-reverse pb-10 mr-10 items-end"></div>
       </div>

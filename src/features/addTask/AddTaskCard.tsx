@@ -79,6 +79,7 @@ const AddTaskCard = (props: AddTaskProps) => {
         console.log("Error ======> new", e);
       }
     }
+    window.location.reload();
   };
 
   const formik = useFormik({
@@ -98,6 +99,7 @@ const AddTaskCard = (props: AddTaskProps) => {
         .catch((e: any) => {
           console.log("Unsuccessful", e);
         });
+      formik.resetForm();
     },
   });
 
